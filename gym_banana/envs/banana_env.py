@@ -141,3 +141,7 @@ class BananaEnv(gym.Env):
         """Get the observation."""
         ob = [self.TOTAL_TIME_STEPS - self.curr_step]
         return ob
+
+    def _seed(self, seed):
+        random.seed(seed)
+        np.random.seed
