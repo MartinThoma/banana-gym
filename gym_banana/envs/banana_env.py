@@ -8,13 +8,22 @@ Each episode is selling a single banana.
 """
 
 # core modules
-import random
+import logging.config
 import math
+import pkg_resources
+import random
 
 # 3rd party modules
+from gym import spaces
+import cfg_load
 import gym
 import numpy as np
-from gym import spaces
+
+
+path = 'config.yaml'  # always use slash in packages
+filepath = pkg_resources.resource_filename('gym_banana', path)
+config = cfg_load.load(filepath)
+logging.config.dictConfig(config['LOGGING'])
 
 
 def get_chance(x):
@@ -33,7 +42,7 @@ class BananaEnv(gym.Env):
 
     def __init__(self):
         self.__version__ = "0.1.0"
-        print("BananaEnv - Version {}".format(self.__version__))
+        logging.info("BananaEnv - Version {}".format(self.__version__))
 
         # General variables defining the environment
         self.MAX_PRICE = 2.0
@@ -51,13 +60,13 @@ class BananaEnv(gym.Env):
                         ])
         high = np.array([self.TOTAL_TIME_STEPS,  # remaining_tries
                          ])
-        self.observation_space = spaces.Box(low, high)
+        self.observation_space = spaces.Box(low, high, dtype=np.float32)
 
         # Store what the agent tried
         self.curr_episode = -1
         self.action_episode_memory = []
 
-    def _step(self, action):
+    def step(self, action):
         """
         The agent takes a step in the environment.
 
@@ -120,7 +129,7 @@ class BananaEnv(gym.Env):
         else:
             return 0.0
 
-    def _reset(self):
+    def reset(self):
         """
         Reset the state of the environment and returns an initial observation.
 
@@ -142,6 +151,6 @@ class BananaEnv(gym.Env):
         ob = [self.TOTAL_TIME_STEPS - self.curr_step]
         return ob
 
-    def _seed(self, seed):
+    def seed(self, seed):
         random.seed(seed)
         np.random.seed
