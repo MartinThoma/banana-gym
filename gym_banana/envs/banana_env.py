@@ -137,6 +137,7 @@ class BananaEnv(gym.Env):
         -------
         observation (object): the initial observation of the space.
         """
+        self.curr_step = -1
         self.curr_episode += 1
         self.action_episode_memory.append([])
         self.is_banana_sold = False
