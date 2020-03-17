@@ -1,20 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# core modules
+# Core Library
 import unittest
 
-# 3rd party modules
+# Third party
 import gym
 
-# internal modules
+# First party
 import gym_banana
 
 
 class Environments(unittest.TestCase):
-
     def test_env(self):
-        env = gym.make('Banana-v0')
+        env = gym.make("Banana-v0")
         env.seed(0)
         env.reset()
         env.step(0)

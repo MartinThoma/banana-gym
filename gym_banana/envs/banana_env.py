@@ -7,29 +7,28 @@ Simulate the simplifie Banana selling environment.
 Each episode is selling a single banana.
 """
 
-# core modules
+# Core Library
 import logging.config
 import math
-import pkg_resources
 import random
 
-# 3rd party modules
-from gym import spaces
+# Third party
 import cfg_load
 import gym
 import numpy as np
+import pkg_resources
+from gym import spaces
 
-
-path = 'config.yaml'  # always use slash in packages
-filepath = pkg_resources.resource_filename('gym_banana', path)
+path = "config.yaml"  # always use slash in packages
+filepath = pkg_resources.resource_filename("gym_banana", path)
 config = cfg_load.load(filepath)
-logging.config.dictConfig(config['LOGGING'])
+logging.config.dictConfig(config["LOGGING"])
 
 
 def get_chance(x):
     """Get probability that a banana will be sold at price x."""
     e = math.exp(1)
-    return (1.0 + e) / (1. + math.exp(x + 1))
+    return (1.0 + e) / (1.0 + math.exp(x + 1))
 
 
 class BananaEnv(gym.Env):
@@ -56,10 +55,8 @@ class BananaEnv(gym.Env):
         self.action_space = spaces.Discrete(21)
 
         # Observation is the remaining time
-        low = np.array([0.0,  # remaining_tries
-                        ])
-        high = np.array([self.TOTAL_TIME_STEPS,  # remaining_tries
-                         ])
+        low = np.array([0.0])  # remaining_tries
+        high = np.array([self.TOTAL_TIME_STEPS])  # remaining_tries
         self.observation_space = spaces.Box(low, high, dtype=np.float32)
 
         # Store what the agent tried
@@ -106,17 +103,16 @@ class BananaEnv(gym.Env):
 
     def _take_action(self, action):
         self.action_episode_memory[self.curr_episode].append(action)
-        self.price = ((float(self.MAX_PRICE) /
-                      (self.action_space.n - 1)) * action)
+        self.price = (float(self.MAX_PRICE) / (self.action_space.n - 1)) * action
 
         chance_to_take = get_chance(self.price)
-        banana_is_sold = (random.random() < chance_to_take)
+        banana_is_sold = random.random() < chance_to_take
 
         if banana_is_sold:
             self.is_banana_sold = True
 
         remaining_steps = self.TOTAL_TIME_STEPS - self.curr_step
-        time_is_over = (remaining_steps <= 0)
+        time_is_over = remaining_steps <= 0
         throw_away = time_is_over and not self.is_banana_sold
         if throw_away:
             self.is_banana_sold = True  # abuse this a bit
@@ -144,7 +140,7 @@ class BananaEnv(gym.Env):
         self.price = 1.00
         return self._get_state()
 
-    def _render(self, mode='human', close=False):
+    def _render(self, mode="human", close=False):
         return
 
     def _get_state(self):
