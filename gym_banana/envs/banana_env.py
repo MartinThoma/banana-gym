@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 Simulate the simplifie Banana selling environment.
@@ -41,7 +40,7 @@ class BananaEnv(gym.Env):
 
     def __init__(self):
         self.__version__ = "0.1.0"
-        logging.info("BananaEnv - Version {}".format(self.__version__))
+        logging.info(f"BananaEnv - Version {self.__version__}")
 
         # General variables defining the environment
         self.MAX_PRICE = 2.0
