@@ -10,6 +10,7 @@ Each episode is selling a single banana.
 import logging.config
 import math
 import random
+from typing import Any, Dict, Tuple, List
 
 # Third party
 import cfg_load
@@ -24,7 +25,7 @@ config = cfg_load.load(filepath)
 logging.config.dictConfig(config["LOGGING"])
 
 
-def get_chance(x):
+def get_chance(x: float) -> float:
     """Get probability that a banana will be sold at price x."""
     e = math.exp(1)
     return (1.0 + e) / (1.0 + math.exp(x + 1))
@@ -38,7 +39,7 @@ class BananaEnv(gym.Env):
     when the agent receives which reward.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.__version__ = "0.1.0"
         logging.info(f"BananaEnv - Version {self.__version__}")
 
@@ -60,9 +61,9 @@ class BananaEnv(gym.Env):
 
         # Store what the agent tried
         self.curr_episode = -1
-        self.action_episode_memory = []
+        self.action_episode_memory: List[Any] = []
 
-    def step(self, action):
+    def step(self, action: int) -> Tuple[List[int], float, bool, Dict[Any, Any]]:
         """
         The agent takes a step in the environment.
 
@@ -73,19 +74,19 @@ class BananaEnv(gym.Env):
         Returns
         -------
         ob, reward, episode_over, info : tuple
-            ob (object) :
+            ob : List[int]
                 an environment-specific object representing your observation of
                 the environment.
-            reward (float) :
+            reward : float
                 amount of reward achieved by the previous action. The scale
                 varies between environments, but the goal is always to increase
                 your total reward.
-            episode_over (bool) :
+            episode_over : bool
                 whether it's time to reset the environment again. Most (but not
                 all) tasks are divided up into well-defined episodes, and done
                 being True indicates the episode has terminated. (For example,
                 perhaps the pole tipped too far, or you lost your last life.)
-            info (dict) :
+            info : Dict
                  diagnostic information useful for debugging. It can sometimes
                  be useful for learning (for example, it might contain the raw
                  probabilities behind the environment's last state change).
@@ -100,7 +101,7 @@ class BananaEnv(gym.Env):
         ob = self._get_state()
         return ob, reward, self.is_banana_sold, {}
 
-    def _take_action(self, action):
+    def _take_action(self, action: int) -> None:
         self.action_episode_memory[self.curr_episode].append(action)
         self.price = (float(self.MAX_PRICE) / (self.action_space.n - 1)) * action
 
@@ -117,20 +118,21 @@ class BananaEnv(gym.Env):
             self.is_banana_sold = True  # abuse this a bit
             self.price = 0.0
 
-    def _get_reward(self):
+    def _get_reward(self) -> float:
         """Reward is given for a sold banana."""
         if self.is_banana_sold:
             return self.price - 1
         else:
             return 0.0
 
-    def reset(self):
+    def reset(self) -> List[int]:
         """
         Reset the state of the environment and returns an initial observation.
 
         Returns
         -------
-        observation (object): the initial observation of the space.
+        observation: List[int]
+            The initial observation of the space.
         """
         self.curr_step = -1
         self.curr_episode += 1
@@ -139,14 +141,14 @@ class BananaEnv(gym.Env):
         self.price = 1.00
         return self._get_state()
 
-    def _render(self, mode="human", close=False):
-        return
+    def _render(self, mode: str = "human", close: bool = False) -> None:
+        return None
 
-    def _get_state(self):
+    def _get_state(self) -> List[int]:
         """Get the observation."""
         ob = [self.TOTAL_TIME_STEPS - self.curr_step]
         return ob
 
-    def seed(self, seed):
+    def seed(self, seed: int) -> None:
         random.seed(seed)
         np.random.seed

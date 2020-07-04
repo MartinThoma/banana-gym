@@ -7,7 +7,7 @@ import unittest
 import gym
 
 # First party
-import gym_banana
+import gym_banana  # noqa
 
 
 class Environments(unittest.TestCase):
