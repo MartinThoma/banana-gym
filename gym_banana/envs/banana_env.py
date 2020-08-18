@@ -10,7 +10,7 @@ Each episode is selling a single banana.
 import logging.config
 import math
 import random
-from typing import Any, Dict, Tuple, List
+from typing import Any, Dict, List, Tuple
 
 # Third party
 import cfg_load
