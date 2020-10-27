@@ -11,7 +11,7 @@ cffi==1.14.0              # via cryptography
 chardet==3.0.4            # via requests
 colorama==0.4.3           # via twine
 coverage==5.1             # via pytest-cov
-cryptography==2.9.2       # via secretstorage
+cryptography==3.2         # via secretstorage
 docutils==0.16            # via readme-renderer
 filelock==3.0.12          # via pytest-mypy
 flake8==3.8.3             # via pytest-flake8
