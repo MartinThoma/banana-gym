@@ -20,7 +20,7 @@ colorama==0.4.4
     # via twine
 coverage==5.4
     # via pytest-cov
-cryptography==3.3.1
+cryptography==3.3.2
     # via secretstorage
 docutils==0.16
     # via readme-renderer
@@ -67,16 +67,16 @@ pygments==2.7.4
 pyparsing==2.4.7
     # via packaging
 pytest-cov==2.11.1
-    # via -r dev.in
+    # via -r requirements/dev.in
 pytest-flake8==1.0.7
-    # via -r dev.in
+    # via -r requirements/dev.in
 pytest-mccabe==2.0
-    # via -r dev.in
+    # via -r requirements/dev.in
 pytest-mypy==0.8.0
-    # via -r dev.in
+    # via -r requirements/dev.in
 pytest==6.2.2
     # via
-    #   -r dev.in
+    #   -r requirements/dev.in
     #   pytest-cov
     #   pytest-flake8
     #   pytest-mccabe
@@ -103,7 +103,7 @@ toml==0.10.2
 tqdm==4.56.0
     # via twine
 twine==3.3.0
-    # via -r dev.in
+    # via -r requirements/dev.in
 typed-ast==1.4.2
     # via mypy
 typing-extensions==3.7.4.3
@@ -113,7 +113,7 @@ urllib3==1.26.3
 webencodings==0.5.1
     # via bleach
 wheel==0.36.2
-    # via -r dev.in
+    # via -r requirements/dev.in
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
