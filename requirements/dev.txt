@@ -71,16 +71,16 @@ pygments==2.8.1
 pyparsing==2.4.7
     # via packaging
 pytest-cov==2.11.1
-    # via -r requirements/dev.in
+    # via -r dev.in
 pytest-flake8==1.0.7
-    # via -r requirements/dev.in
+    # via -r dev.in
 pytest-mccabe==2.0
-    # via -r requirements/dev.in
+    # via -r dev.in
 pytest-mypy==0.8.1
-    # via -r requirements/dev.in
+    # via -r dev.in
 pytest==6.2.3
     # via
-    #   -r requirements/dev.in
+    #   -r dev.in
     #   pytest-cov
     #   pytest-flake8
     #   pytest-mccabe
@@ -106,16 +106,16 @@ toml==0.10.2
 tqdm==4.60.0
     # via twine
 twine==3.4.1
-    # via -r requirements/dev.in
+    # via -r dev.in
 typed-ast==1.4.2
     # via mypy
 typing-extensions==3.7.4.3
     # via mypy
-urllib3==1.26.4
+urllib3==1.26.5
     # via requests
 webencodings==0.5.1
     # via bleach
 wheel==0.36.2
-    # via -r requirements/dev.in
+    # via -r dev.in
 zipp==3.4.1
     # via importlib-metadata
