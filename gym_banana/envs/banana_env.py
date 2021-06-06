@@ -45,6 +45,7 @@ class BananaEnv(gym.Env):
 
         # General variables defining the environment
         self.MAX_PRICE = 2.0
+        # This results in TOTAL_TIME_STEPS+1 potential banana sales
         self.TOTAL_TIME_STEPS = 2
 
         self.curr_step = -1
