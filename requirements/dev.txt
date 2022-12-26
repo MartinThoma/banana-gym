@@ -46,10 +46,10 @@ mccabe==0.6.1
     # via
     #   flake8
     #   pytest-mccabe
-mypy-extensions==0.4.3
-    # via mypy
 mypy==0.812
     # via pytest-mypy
+mypy-extensions==0.4.3
+    # via mypy
 packaging==20.9
     # via
     #   bleach
@@ -70,6 +70,13 @@ pygments==2.8.1
     # via readme-renderer
 pyparsing==2.4.7
     # via packaging
+pytest==6.2.3
+    # via
+    #   -r dev.in
+    #   pytest-cov
+    #   pytest-flake8
+    #   pytest-mccabe
+    #   pytest-mypy
 pytest-cov==2.11.1
     # via -r dev.in
 pytest-flake8==1.0.7
@@ -78,21 +85,14 @@ pytest-mccabe==2.0
     # via -r dev.in
 pytest-mypy==0.8.1
     # via -r dev.in
-pytest==6.2.3
-    # via
-    #   -r dev.in
-    #   pytest-cov
-    #   pytest-flake8
-    #   pytest-mccabe
-    #   pytest-mypy
 readme-renderer==29.0
-    # via twine
-requests-toolbelt==0.9.1
     # via twine
 requests==2.25.1
     # via
     #   requests-toolbelt
     #   twine
+requests-toolbelt==0.9.1
+    # via twine
 rfc3986==1.4.0
     # via twine
 secretstorage==3.3.1
@@ -115,7 +115,7 @@ urllib3==1.26.5
     # via requests
 webencodings==0.5.1
     # via bleach
-wheel==0.36.2
+wheel==0.38.1
     # via -r dev.in
 zipp==3.4.1
     # via importlib-metadata
